@@ -101,6 +101,14 @@ public class Main {
                 fisMask.close();
                 break;
             }
+           }
+        if(maskBuilder.length()<4){
+            System.out.println("В файле не найдены цифры. Добавьте в файл маску выбора. ");
+            System.out.println("Использовано значение по умолчанию: 0000");
+            mask = "0000";
+        }
+        else {
+            mask = maskBuilder.toString();
         }
         if(maskBuilder.length()<4){
             System.out.println("В файле не найдены цифры. Добавьте в файл маску выбора. ");
