@@ -28,6 +28,9 @@ public class Main {
         FileOutputStream fosNormal = new FileOutputStream(fileNormal);
         FileOutputStream fosGolden = new FileOutputStream(fileGolden);
         makeLists(fosNormal, fosGolden, fisMask, fosMask);
+        System.out.println("Полный список номеров создан в файле "+ fileNormal);
+        System.out.println("Список золотых номеров создан в файле "+ fileGolden);
+        System.out.println("Список подходящих Вам номеров создан в файле "+ fileUser);
     }
 
 
@@ -43,7 +46,6 @@ public class Main {
         String choice = chooseMask(input);
 
         do {
-            System.out.println("Choice is " + choice);
 
             switch (choice) {
                 case "1" ->
@@ -59,10 +61,10 @@ public class Main {
             m[i] = userMask.charAt(i);
         }
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10000000; i++) {
             Formatter buffer = new Formatter();
             buffer.format("%07d", i);
-            System.out.println(buffer);
+//            System.out.println(buffer);
 
             for (int j = 0; j < 7; j++) {
                 n[j] = buffer.toString().charAt(j);
@@ -81,6 +83,34 @@ public class Main {
         fmtNormal.close();
         fmtGolden.close();
         fmtUserMask.close();
+        System.out.println("Файлы успешно сформированы. ");
+
+    }
+
+    private static String readFromFile(FileInputStream fisMask, String mask) throws IOException {
+        int c, d = 0;
+
+        StringBuilder maskBuilder = new StringBuilder(mask);
+        while ((c = fisMask.read()) != -1) {
+
+            if (c >= '0' && c <= '9') {
+                maskBuilder.append((char) c);
+//                System.out.print("m[d] = " + maskBuilder + " ");
+            }
+            if (maskBuilder.length() > 4) {
+                fisMask.close();
+                break;
+            }
+           }
+        if(maskBuilder.length()<4){
+            System.out.println("В файле не найдены цифры. Добавьте в файл маску выбора. ");
+            System.out.println("Использовано значение по умолчанию: 0000");
+            mask = "0000";
+        }
+        else {
+            mask = maskBuilder.toString();
+        }
+        return mask;
     }
 
     private static String getUserMask(Scanner input) {
@@ -91,26 +121,8 @@ public class Main {
             System.out.print("Нужно ввести 4 цифры: ");
             kb = input.next();
         }
-        System.out.println("Out of while");
+//        System.out.println("Out of while");
         return kb;
-    }
-
-    private static String readFromFile(FileInputStream fisMask, String mask) throws IOException {
-        int c, d = 0;
-
-        while ((c = fisMask.read()) != -1) {
-
-            if (c >= '0' && c <= '9') {
-                mask += (char) c;
-                System.out.print("m[d] = " + mask + " ");
-
-            }
-            if (mask.length() > 4) {
-                fisMask.close();
-                break;
-            }
-        }
-        return mask;
     }
 
     private static String chooseMask(Scanner input) {
@@ -120,6 +132,7 @@ public class Main {
             System.out.print("1 - ввести вручную, 2 - загрузить из файла: ");
             kb = input.next();
         }
+//        System.out.println("kb is " +kb);
         return kb;
     }
 
