@@ -7,6 +7,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Эта программа ищет числа в указанном файле и использует их для решения задачи.");
+        File file = new File("D:\\sample.txt");
+      //Instantiating the PrintStream class
+      PrintStream stream = new PrintStream(file);
+        System.setOut(stream);
         String fileName = getFile();
         if (fileName != null)
             fileParser(fileName);
