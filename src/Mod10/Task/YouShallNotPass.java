@@ -9,7 +9,6 @@ public class YouShallNotPass extends Exception {
     @Override
     public String toString() {
         return "You Shall Not Pass {"
-//                + "detail=" + detail
                 + ", message= " + getMessage()
                 + "} ";
     }

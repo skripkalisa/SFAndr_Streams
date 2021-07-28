@@ -2,39 +2,55 @@ package Mod10.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Эта программа ищет числа в указанном файле и использует их для решения задачи.");
-        File file = new File("D:\\sample.txt");
-      //Instantiating the PrintStream class
-      PrintStream stream = new PrintStream(file);
-        System.setOut(stream);
-        String fileName = getFile();
-        if (fileName != null)
-            fileParser(fileName);
-        System.out.println("Программа завершила работу");
+        PrintWriter outputFile = null;
+        try {
+            outputFile = new PrintWriter("src/Mod10/Task/output.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //Этим способом вывод в консоль перехватывается и перенаправляется в файл.
+        // Сообщения в консоль не выводятся.
+        // Зато способ менее громоздкий.
+//        PrintStream stream = null;
+//        try {
+//            stream = new PrintStream(String.valueOf(outputFile));
+//        } catch (FileNotFoundException e) {
+//            e.getMessage();
+//        }
+        String fileName = getFile(outputFile);
+        if (fileName != null) {
+//            System.setOut(stream); // для перехвата консольных сообщений
+            fileParser(fileName, outputFile);
+        }
+
+        output("Программа завершила работу", System.out, outputFile);
+        outputFile.close();
     }
 
-    private static String getFile() {
+    private static String getFile(PrintWriter outputFile) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Введите имя файла: ");
+       output("Введите имя файла: ", System.out, outputFile);
         String fileName = null;
         fileName = input.next();
         try {
             File f = new File(fileName);
             if (!f.exists() || f.isDirectory())
                 throw new YouShallNotPass("Нет такого файла или путь указан неверно.");
-//            if (!f.exists() || f.isDirectory())
         } catch (YouShallNotPass e) {
-            System.out.println("YouShallNotPass сообщает: " + e.getMessage());
+            output("YouShallNotPass сообщает: " + e.getMessage(), System.out, outputFile);
             fileName = null;
         }
         return fileName;
     }
 
-    private static void fileParser(String fileName) {
+    private static void fileParser(String fileName, PrintWriter outputFile) {
         float[] args = new float[3];
         int i = 0;
         String word = null;
@@ -58,13 +74,13 @@ public class Main {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Что-то пошло не так. " + e.getMessage());
+            output("Что-то пошло не так. " + e.getMessage(), System.out, outputFile);
         } finally {
-            System.out.println("В файле " + fileName + " удалось найти такие числа: ");
+            output("В файле " + fileName + " удалось найти такие числа: ", System.out, outputFile);
             for (int j = 0; j < args.length; j++)
-                System.out.print(args[j] + " ");
+                output(args[j] + " ", System.out, outputFile);
         }
-        Equation eq = new Equation(args);
+        Equation eq = new Equation(args, outputFile);
         eq.equation();
     }
 
@@ -98,6 +114,11 @@ public class Main {
             return false;
         }
     }
+    protected static void output(final String msg, PrintStream out1, PrintWriter out2) {
+    out1.println(msg);
+    out2.println(msg);
+}
+
 }
 
 //
