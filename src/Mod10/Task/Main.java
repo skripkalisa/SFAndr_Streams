@@ -36,7 +36,7 @@ public class Main {
 
     private static String getFile(PrintWriter outputFile) {
         Scanner input = new Scanner(System.in);
-       output("Введите имя файла: ", System.out, outputFile);
+        output("Введите имя файла: ", System.out, outputFile);
         String fileName = null;
         fileName = input.next();
         try {
@@ -114,32 +114,9 @@ public class Main {
             return false;
         }
     }
+
     protected static void output(final String msg, PrintStream out1, PrintWriter out2) {
-    out1.println(msg);
-    out2.println(msg);
+        out1.println(msg);
+        out2.println(msg);
+    }
 }
-
-}
-
-//
-//        try (Reader fis = new InputStreamReader(new FileInputStream(fileName))){
-//
-//            char[] buffer = new char[1024];
-//            int length;
-//            int i = 0;
-//            while ((length = fis.read(buffer)) > 0) {
-//                System.out.println(Integer.toString(i) + " " + buffer.toString());
-//                i++;
-////                fos.write(buffer, 0, length);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        Writer fos = new OutputStreamWriter(new FileOutputStream(new File(dest)));
-
-//    }
-//
-//            }
