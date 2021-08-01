@@ -1,4 +1,4 @@
-package Mod11.Examples.Sets.Cards;
+package Mod11.Task;
 
 import java.util.Objects;
 
@@ -6,6 +6,8 @@ public final class Card {
 
     private final String rank;
     private final String suit;
+    private final boolean guess;
+
 
     public Card(String rank, String suit) {
         if (rank == null || suit == null) {
@@ -13,6 +15,15 @@ public final class Card {
         }
         this.rank = rank;
         this.suit = suit;
+        guess = false;
+    }
+    public Card(String rank, String suit, boolean guess) {
+        if (rank == null || suit == null) {
+            throw new IllegalArgumentException(); // бросаем ошибку при создания карты с нулевыми значениями
+        }
+        this.rank = rank;
+        this.suit = suit;
+        this.guess = guess;
     }
 
     @Override
@@ -30,6 +41,14 @@ public final class Card {
     }
 
     public String getRank() {
-        return null;
+        return rank;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public boolean isGuess() {
+        return guess;
     }
 }
