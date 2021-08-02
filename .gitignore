@@ -1,8 +1,8 @@
 out/
 .idea/
-Mod7/
-Mod8/
-Mod9/
-Mod10/
+#Mod7/
+#Mod8/
+#Mod9/
+#Mod10/
 Streams.iml
 *.txt
