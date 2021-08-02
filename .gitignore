@@ -1,7 +1,24 @@
-.vscode/
-lib/
-bin/
-Test/
-*.zip
-*.tar.gs
+<<<<<<< HEAD
+*.tar.gz
+=======
+out/
+.idea/
+Mod7/
+Mod8/
+Mod9/
+Mod10/
+Mod12/
+Mod13/
+Mod14/
+Mod15/
+Mod16/
+Mod17/
+Mod18/
+Streams.iml
+>>>>>>> updated .gitignore
 *.txt
+*.zip
+.vscode/
+bin/
+lib/
+Test/
