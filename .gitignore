@@ -1,6 +1,6 @@
 out/
-#.idea/
-#Streams.iml
+.idea/
+Streams.iml
 #src/Mod8/
 #src/Mod9/
 #src/Mod10/
