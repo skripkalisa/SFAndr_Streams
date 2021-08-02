@@ -2,18 +2,21 @@ package Mod11.Task;
 
 import java.util.*;
 
-
-
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Simple card game \"I doubt it\"");
+        clearConsole();
+        System.out.println("\nSimple card game \"I doubt it\"");
         System.out.println("Computer picks a random card \n" + "and randomly sets it to be \"True\" of \"False\". \n"
                 + "If you guess it, you get one point, \n" + "while computer looses one point. And vice-versa. \n"
                 + "The game continues until there are no cards left.\n");
-
+        pause(3000);
+        // clearConsole();
         System.out.println("How to play.");
         System.out.println("Computer names a card.\n");
-        // showRules(); //console in not cleared in IDEA. Weird.
+        showRules(); // console in not cleared in IDEA. Weird.
+        pause(4000);
+        clearConsole();
+
         Set<Card> deck = getCards();
         // for (Card card : deck) // uncomment to see the deck before the game
         // System.out.println(card.getRank() + " of "
@@ -48,6 +51,7 @@ public class Main {
         Iterator<Card> card = deck.iterator();
         Scanner input = new Scanner(System.in);
         while (card.hasNext()) {
+            getScore(playerScore, computerScore);
             Card cardCall = card.next();
             System.out.println("Next card is: " + cardCall.getRank() + " of " + cardCall.getSuit());
             showRules();
@@ -62,6 +66,7 @@ public class Main {
                 computerScore++;
                 wrongGuess(playerScore, computerScore);
             }
+            pause(1000);
             clearConsole();
         }
         finalScore(playerScore, computerScore);
@@ -69,6 +74,14 @@ public class Main {
 
     private static void showRules() {
         System.out.print("If you trust it, enter '1'. Otherwise enter '0'. To quit the game, enter '-': ");
+    }
+
+    private static void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            System.out.println("Can't sleep: " + e.getMessage());
+        }
     }
 
     private static char getChoice(Scanner input) {
@@ -99,24 +112,24 @@ public class Main {
 
     private static void rightGuess(int playerScore, int computerScore) {
         System.out.println("You're right!");
-        getScore(playerScore, computerScore);
     }
 
     private static void wrongGuess(int playerScore, int computerScore) {
         System.out.println("You're wrong!");
-        getScore(playerScore, computerScore);
+    }
+
+    private static void getScore(int playerScore, int computerScore) {
+        System.out.println("Your score: " + playerScore + ". Computer score : " + computerScore + "\n");
     }
 
     private static void finalScore(int playerScore, int computerScore) {
         if (playerScore > computerScore) {
             System.out.println("Game over. You win!");
-        } else {
+        } else if (playerScore < computerScore) {
             System.out.println("Game over. You loose!");
+        } else {
+            System.out.println("Game over. Draw.");
         }
         getScore(playerScore, computerScore);
-    }
-
-    private static void getScore(int playerScore, int computerScore) {
-        System.out.println("Your score: " + playerScore + ". Computer score : " + computerScore + "\n");
     }
 }
