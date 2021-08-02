@@ -84,7 +84,7 @@ public class NetClient extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// ���������� ������������ ������ � ���� � �� �����
+
 		out.print(arg0.getKeyChar());
 		out.flush();
 
