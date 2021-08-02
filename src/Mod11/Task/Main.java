@@ -3,34 +3,31 @@ package Mod11.Task;
 import java.util.*;
 
 
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Simple card game \"I doubt it\"");
-        System.out.println("Computer picks a random card \n" +
-                "and randomly sets it to be \"True\" of \"False\". \n" +
-                "If you guess it, you get one point, \n" +
-                "while computer looses one point. And vice-versa. \n" +
-                "The game continues until there are no cards left.\n");
-//        System.out.println("To quit the game, enter the minus sign '-'.");
+        System.out.println("Computer picks a random card \n" + "and randomly sets it to be \"True\" of \"False\". \n"
+                + "If you guess it, you get one point, \n" + "while computer looses one point. And vice-versa. \n"
+                + "The game continues until there are no cards left.\n");
+
         System.out.println("How to play.");
         System.out.println("Computer names a card.\n");
-//        showRules(); console in not cleared. Weird.
+        // showRules(); //console in not cleared in IDEA. Weird.
         Set<Card> deck = getCards();
-//        for (Card card : deck)
-//            System.out.println(card.getRank() + " of "
-//                    + card.getSuit() + " = " + card.isGuess());
+        // for (Card card : deck) // uncomment to see the deck before the game
+        // System.out.println(card.getRank() + " of "
+        // + card.getSuit() + " = " + card.isGuess());
 
-        clearConsole();
         int playerScore = 0;
         int computerScore = 0;
         playTheGame(deck, playerScore, computerScore);
-// ToDo
     }
 
     private static Set<Card> getCards() {
         Set<Card> deck = new HashSet<>();
-        String[] rank = {"6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
-        String[] suit = {"Hearts", "Diamonds", "Clubs", "Spades"};
+        String[] rank = { "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+        String[] suit = { "Hearts", "Diamonds", "Clubs", "Spades" };
         Random guess = new Random();
         for (String s : suit) {
             for (String value : rank) {
@@ -43,17 +40,6 @@ public class Main {
     public static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        try {
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("cls");
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (final Exception e) {
-            System.out.println("Couldn't clear the screen: " + e.getMessage());
-        }
     }
 
     private static void playTheGame(Set<Card> deck, int playerScore, int computerScore) {
@@ -63,8 +49,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         while (card.hasNext()) {
             Card cardCall = card.next();
-            System.out.println("Next card is: " + cardCall.getRank() + " of "
-                    + cardCall.getSuit());
+            System.out.println("Next card is: " + cardCall.getRank() + " of " + cardCall.getSuit());
             showRules();
             choice = getChoice(input);
             move = checkMove(cardCall.isGuess(), choice);
@@ -95,7 +80,6 @@ public class Main {
         return symbol;
     }
 
-
     public static boolean checkMove(boolean cardFlag, char choice) {
         switch (choice) {
             case '0' -> {
@@ -122,7 +106,6 @@ public class Main {
         System.out.println("You're wrong!");
         getScore(playerScore, computerScore);
     }
-
 
     private static void finalScore(int playerScore, int computerScore) {
         if (playerScore > computerScore) {

@@ -1,9 +1,7 @@
-out/
-.idea/
-#Mod7/
-#Mod8/
-#Mod9/
-#Mod10/
-Streams.iml
+.vscode/
+lib/
+bin/
+Test/
+*.zip
+*.tar.gs
 *.txt
-.vscode
