@@ -2,25 +2,23 @@ package Mod12.Task2;
 
 import java.awt.Color;
 import java.awt.Insets;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Socket;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class Pomodoro extends JFrame implements KeyListener {
+public class Pomodoro extends JFrame {
 
 	JTextArea textArea;
 	JScrollPane scrollPane;
-	InputStreamReader in;
-	PrintWriter out;
+	int timerShow;
+	int timerHide;
+	// InputStreamReader in;
+	// PrintWriter out;
 
-	Pomodoro() {
+	Pomodoro(int timerShow, int timerHide) {
 
 		super("Simple Chat client");
 		setSize(800, 600);
@@ -37,32 +35,44 @@ public class Pomodoro extends JFrame implements KeyListener {
 		this.add(scrollPane);
 		// ToDO
 		// showUp();
-		Thread pomodoro = new Thread() {
+		new Thread() {
 			public void run() {
+				while (!isInterrupted()) {
+					try {
+						Thread.sleep(timerHide);
+					} catch (InterruptedException e) {
+						// e.printStackTrace();
+					}
+					showUp();
+					// showUp();
+					System.out.println("Working hard");
+					try {
+						Thread.sleep(timerShow);
+						hideOut();
+					} catch (InterruptedException e) {
+						// Перехватываем молча
+					}
+					System.out.println("All done");
+				}
 			};
-		};
-		while (!isInterrupted()) {
-			System.out.println("Working hard");
-		}
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// Перехватываем молча
-		}
-		System.out.println("All done");
+		}.start();
+
+		// ToDO
+	};
+
+	// private boolean isInterrupted() {
+	// return false;
+	// }
+	void hideOut() {
+		this.setVisible(false);
 	}
 
-	// ToDO
-};}
-
 	void showUp() {
-
+		this.setVisible(true);
+		// this.start();
 		// .start();
 		// ToDO
 
 	}
 
-	public static void main(String[] args) {
-		new Pomodoro().setVisible(true);
-	}
 }
