@@ -33,46 +33,37 @@ public class Pomodoro extends JFrame {
 		textArea.setMargin(new Insets(10, 10, 10, 10));
 		scrollPane = new JScrollPane(textArea);
 		this.add(scrollPane);
-		// ToDO
-		// showUp();
+
 		new Thread() {
 			public void run() {
 				while (!isInterrupted()) {
 					try {
 						Thread.sleep(timerHide);
 					} catch (InterruptedException e) {
-						// e.printStackTrace();
+						// Перехватываем молча
 					}
 					showUp();
-					// showUp();
-					System.out.println("Working hard");
+
+					System.out.println("Работаем не покладая рук " + (float) (timerHide / 1000) / 60 + " минут");
 					try {
 						Thread.sleep(timerShow);
 						hideOut();
 					} catch (InterruptedException e) {
 						// Перехватываем молча
 					}
-					System.out.println("All done");
+					System.out.println("Отдыхаем " + (float) (timerShow / 1000) / 60 + " минут");
 				}
 			};
 		}.start();
 
-		// ToDO
 	};
 
-	// private boolean isInterrupted() {
-	// return false;
-	// }
 	void hideOut() {
 		this.setVisible(false);
 	}
 
 	void showUp() {
 		this.setVisible(true);
-		// this.start();
-		// .start();
-		// ToDO
-
 	}
 
 }
