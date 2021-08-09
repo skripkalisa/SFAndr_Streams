@@ -55,6 +55,3 @@ public class Fox {
     t2.start();
   }
 }
-// public class Zoo {
-
-// }
