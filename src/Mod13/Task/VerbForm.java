@@ -8,8 +8,10 @@ public final class VerbForm {
   private final List<String> form;
   private final List<String> ending;
 
-  public VerbForm(String verb) {
+  public VerbForm(String verb, List<String> ending) {
     this.verb = verb;
+    this.ending = ending;
+    form = null;
   }
 
   public VerbForm(String verb, List<String> form, List<String> ending) {
@@ -35,7 +37,7 @@ public final class VerbForm {
     for (String verbEnding : this.ending) {
       System.out.print(verb + verbEnding + "\t | ");
     }
-    System.out.println("");
+    System.out.println();
     return new ArrayList<>(ending);
   }
 }

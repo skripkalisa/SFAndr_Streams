@@ -23,6 +23,9 @@ public class Client implements Runnable {
     new Thread(this).start();
   }
 
+  public Client(Socket socket) {
+  }
+
   void receive(String message) {
     out.println(message);
   }
