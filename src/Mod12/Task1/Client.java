@@ -23,6 +23,10 @@ public class Client implements Runnable {
     new Thread(this).start();
   }
 
+  public Client(Socket socket) {
+    this.socket = socket;
+  }
+
   void receive(String message) {
     out.println(message);
   }
@@ -40,8 +44,7 @@ public class Client implements Runnable {
       String input = in.nextLine();
       while (!input.equals("bye")) {
         server.sendAll(input);
-        // out.println(input + "-" + input + "-" + input.substring(input.length() / 2) +
-        // "...");
+
         input = in.nextLine();
       }
       socket.close();
@@ -64,6 +67,5 @@ public class Client implements Runnable {
       Thread thread = new Thread(client);
       thread.start();
     }
-    // server.close();
   }
 }
