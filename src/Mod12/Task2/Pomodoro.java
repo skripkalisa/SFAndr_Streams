@@ -1,18 +1,13 @@
 package Mod12.Task2;
 
-import java.awt.Color;
-import java.awt.Insets;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
+import java.awt.*;
 
 public class Pomodoro extends JFrame {
 
   JTextArea textArea;
   JScrollPane scrollPane;
-  int timerShow;
-  int timerHide;
+
 
   Pomodoro(int timerShow, int timerHide) {
 
@@ -36,7 +31,7 @@ public class Pomodoro extends JFrame {
           try {
             Thread.sleep(timerHide);
           } catch (InterruptedException e) {
-            // Перехватываем молча
+            System.out.println("Error: " + e.getMessage());
           }
           showUp();
 
@@ -45,14 +40,13 @@ public class Pomodoro extends JFrame {
             Thread.sleep(timerShow);
             hideOut();
           } catch (InterruptedException e) {
-            // Перехватываем молча
-          }
           System.out.println("Отдыхаем " + (float) (timerShow / 1000) / 60 + " минут");
+          }
         }
-      };
+      }
     }.start();
 
-  };
+  }
 
   void hideOut() {
     this.setVisible(false);
