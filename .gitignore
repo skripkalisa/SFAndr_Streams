@@ -1,16 +1,18 @@
 out/
 .idea/
-# src/Mod7/
-# src/Mod8/
-# src/Mod9/
-# src/Mod10/
-# src/Mod11/
-# src/Mod12/
-# src/Mod14/
-# src/Mod15/
-# src/Mod16/
-# src/Mod17/
-# src/Mod18/
+ src/Mod7/
+ src/Mod8/
+ src/Mod9/
+ src/Mod10/
+ src/Mod11/
+ src/Mod12/
+ src/Mod13/
+ src/Mod14/
+ src/Mod15/
+# src/Mod15P/
+ src/Mod16/
+ src/Mod17/
+ src/Mod18/
 Streams.iml
 *.txt
 *.zip
